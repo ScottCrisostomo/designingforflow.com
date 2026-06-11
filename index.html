@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scott Crisostomo — Game Design Portfolio</title>
+<meta name="description" content="30+ years designing the systems, mechanics, and moments players remember. Associate Game Director on XDefiant. Lead Designer on South Park, Kill Switch, and more.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0E0E10;--bg2:#161618;--bg3:#1E1E22;
+  --accent:#3B8AFF;--accent2:#5CA0FF;
+  --text:#F0F0F4;--muted:#8888A0;--border:#2A2A32;
+  --sans:'Inter',sans-serif;--display:'Syne',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.6;overflow-x:hidden}
+a{color:var(--accent);text-decoration:none}
+a:hover{color:var(--accent2)}
+img{display:block;max-width:100%}
+
+/* NAV */
+nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(14,14,16,0.94);
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+  padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:56px;
+}
+.nav-logo{font-family:var(--display);font-size:13px;font-weight:700;color:var(--accent);letter-spacing:0.02em}
+.nav-logo span{color:var(--muted)}
+.nav-links{display:flex;gap:2rem}
+.nav-links a{font-size:14px;color:var(--muted);transition:color 0.2s;letter-spacing:0.02em}
+.nav-links a:hover{color:var(--text)}
+.nav-resume{font-size:13px;padding:6px 14px;border:1px solid var(--border);border-radius:4px;color:var(--muted);transition:border-color 0.2s,color 0.2s}
+.nav-resume:hover{border-color:var(--accent);color:var(--accent)}
+
+/* HERO */
+.hero{padding:6rem 2rem 4rem;max-width:960px;margin:0 auto}
+.hero-eyebrow{font-family:var(--sans);font-size:12px;color:var(--accent);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:1.5rem;display:flex;align-items:center;gap:0.75rem}
+.hero-eyebrow::after{content:'';flex:1;max-width:48px;height:1px;background:var(--accent);opacity:0.4}
+.hero h1{font-family:var(--display);font-size:clamp(2.6rem,6vw,4.2rem);font-weight:800;line-height:1.05;letter-spacing:-0.025em;margin-bottom:1.5rem}
+.hero h1 .accent{color:var(--accent)}
+.hero-sub{font-size:1.1rem;color:var(--muted);max-width:580px;margin-bottom:3rem;line-height:1.75}
+.hero-cta{display:inline-flex;align-items:center;gap:0.5rem;background:var(--accent);color:#fff;padding:0.8rem 1.6rem;border-radius:4px;font-size:15px;font-weight:500;transition:background 0.2s}
+.hero-cta:hover{background:var(--accent2);color:#fff}
+.hero-cta-ghost{display:inline-flex;align-items:center;gap:0.5rem;border:1px solid var(--border);color:var(--muted);padding:0.8rem 1.6rem;border-radius:4px;font-size:15px;transition:border-color 0.2s,color 0.2s;margin-left:1rem}
+.hero-cta-ghost:hover{border-color:var(--accent);color:var(--accent)}
+
+/* SECTIONS */
+.section-wrap{padding:4rem 2rem;max-width:1100px;margin:0 auto}
+.section-header{margin-bottom:2.5rem}
+.section-eyebrow{font-family:var(--sans);font-size:11px;color:var(--accent);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:0.6rem}
+.section-title{font-family:var(--display);font-size:1.5rem;font-weight:700;color:var(--text)}
+hr.divider{border:none;border-top:1px solid var(--border);margin:0}
+
+/* GAME CARDS */
+.games-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
+
+.game-card-hero{
+  grid-column:1/-1;
+  display:block;text-decoration:none;
+  background:var(--bg2);border:1px solid var(--border);
+  border-radius:8px;overflow:hidden;position:relative;
+  transition:border-color 0.25s;
+}
+.game-card-hero:hover{border-color:var(--accent)}
+
+.game-card{
+  display:block;text-decoration:none;
+  background:var(--bg2);border:1px solid var(--border);
+  border-radius:6px;overflow:hidden;position:relative;
+  transition:border-color 0.25s,transform 0.25s;
+}
+.game-card:hover{border-color:var(--accent);transform:translateY(-4px)}
+
+.game-thumb{height:200px;overflow:hidden;position:relative;background:#111}
+.game-card-hero .game-thumb{height:440px}
+.game-thumb img{width:100%;height:100%;object-fit:cover;transition:transform 0.45s;opacity:0.8}
+.game-card:hover .game-thumb img,.game-card-hero:hover .game-thumb img{transform:scale(1.04);opacity:1}
+
+.game-thumb-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(14,14,16,0.95) 0%,rgba(14,14,16,0.15) 55%,transparent 100%);
+  display:flex;align-items:flex-end;padding:1rem 1.125rem;z-index:1;
+}
+.game-card-hero .game-thumb-overlay{padding:2rem 2.25rem}
+
+.game-thumb-text{width:100%}
+.game-name{font-family:var(--display);font-weight:700;font-size:15px;color:var(--text);margin-bottom:0.2rem;line-height:1.2}
+.game-card-hero .game-name{font-size:1.8rem;margin-bottom:0.4rem}
+.game-role-text{font-size:12px;color:var(--muted);line-height:1.4}
+.game-card-hero .game-role-text{font-size:14px}
+.pills{display:flex;gap:6px;flex-wrap:wrap;margin-top:0.6rem}
+.pill{font-size:11px;padding:2px 8px;border-radius:3px;border:1px solid var(--border);color:var(--muted)}
+.pill-blue{border-color:rgba(59,138,255,0.35);color:var(--accent)}
+
+/* Hover panel slides in from right */
+.hover-panel{
+  position:absolute;top:0;right:0;bottom:0;width:260px;
+  background:rgba(14,14,16,0.97);border-left:1px solid var(--border);
+  transform:translateX(100%);
+  transition:transform 0.3s cubic-bezier(0.4,0,0.2,1);
+  z-index:2;display:flex;flex-direction:column;padding:1.25rem;
+}
+.game-card-hero .hover-panel{width:320px}
+.game-card:hover .hover-panel,.game-card-hero:hover .hover-panel{transform:translateX(0)}
+.hover-panel-label{font-size:10px;color:var(--accent);text-transform:uppercase;letter-spacing:0.14em;margin-bottom:0.75rem;padding-bottom:0.6rem;border-bottom:1px solid var(--border)}
+.hover-stats{list-style:none;display:flex;flex-direction:column;gap:0.65rem;flex:1}
+.hover-stats li{font-size:13px;color:var(--muted);line-height:1.5;display:flex;gap:0.5rem}
+.hover-stats li strong{color:var(--text);font-weight:500;flex-shrink:0;min-width:60px}
+.hover-cta{margin-top:1.25rem;padding:0.6rem 1rem;background:var(--accent);color:#fff;border-radius:4px;font-size:13px;font-weight:500;text-align:center;display:block}
+
+.cancelled-badge{
+  position:absolute;top:10px;left:10px;z-index:3;
+  background:rgba(14,14,16,0.88);border:1px solid var(--border);
+  border-radius:3px;padding:3px 9px;
+  font-size:10px;color:var(--muted);letter-spacing:0.08em;text-transform:uppercase;
+}
+
+/* SECONDARY CREDITS */
+.secondary-label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;margin:2.5rem 0 1.25rem;display:flex;align-items:center;gap:1rem}
+.secondary-label::after{content:'';flex:1;height:1px;background:var(--border)}
+.secondary-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1px;border:1px solid var(--border);border-radius:6px;overflow:hidden}
+.secondary-card{background:var(--bg2);padding:1rem 1.125rem;transition:background 0.2s;display:block;text-decoration:none}
+.secondary-card:hover{background:var(--bg3)}
+.secondary-card .game-name{font-size:14px;margin-bottom:0.15rem}
+.secondary-card .game-role-text{font-size:12px;margin-bottom:0.4rem}
+
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
+.about-body{font-size:15px;color:var(--muted);line-height:1.8}
+.about-body p+p{margin-top:1rem}
+.about-body strong{color:var(--text);font-weight:500}
+
+/* SKILLS */
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1px;border:1px solid var(--border);border-radius:6px;overflow:hidden}
+.skill-group{background:var(--bg2);padding:1.25rem}
+.skill-group h4{font-size:11px;color:var(--accent);text-transform:uppercase;letter-spacing:0.12em;margin-bottom:0.75rem}
+.skill-list{list-style:none;display:flex;flex-direction:column;gap:5px}
+.skill-list li{font-size:14px;color:var(--muted);display:flex;align-items:center;gap:8px}
+.dot{width:3px;height:3px;border-radius:50%;background:var(--accent);flex-shrink:0}
+
+/* CONTACT */
+.contact-block{background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:2rem;max-width:540px}
+.contact-row{display:flex;align-items:center;padding:0.65rem 0;border-bottom:1px solid var(--border);font-size:14px;gap:1rem}
+.contact-row:last-child{border-bottom:none}
+.contact-key{font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);width:80px;flex-shrink:0}
+.contact-val{color:var(--text)}
+.contact-val a{color:var(--accent)}
+
+footer{border-top:1px solid var(--border);padding:2rem;text-align:center;font-size:13px;color:var(--muted)}
+
+@media(max-width:800px){
+  .games-grid{grid-template-columns:1fr}
+  .game-card-hero .game-thumb{height:280px}
+  .nav-links{display:none}
+  .about-grid{grid-template-columns:1fr}
+  .hero-cta-ghost{margin-left:0;margin-top:0.75rem;display:block;width:fit-content}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-logo">designing<span>for</span>flow<span>.com</span></span>
+  <div class="nav-links">
+    <a href="#games">Games</a>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <a class="nav-resume" href="mailto:scottcrisostomo@gmail.com">Get in touch</a>
+</nav>
+
+<div class="hero">
+  <p class="hero-eyebrow">// portfolio</p>
+  <h1>Scott<br><span class="accent">Crisostomo</span></h1>
+  <p class="hero-sub">Associate Game Director and design lead with 30+ years building the systems, mechanics, and moments players remember &mdash; from the cover system in Kill Switch to directing Ubisoft's largest live-service launch.</p>
+  <a class="hero-cta" href="#games">See the work &rarr;</a>
+  <a class="hero-cta-ghost" href="#contact">Get in touch</a>
+</div>
+
+<hr class="divider">
+
+<div class="section-wrap" id="games">
+  <div class="section-header">
+    <p class="section-eyebrow">// work</p>
+    <h2 class="section-title">Game portfolio</h2>
+  </div>
+
+  <div class="games-grid">
+
+    <!-- XDefiant HERO -->
+    <a class="game-card-hero" href="games/xdefiant.html">
+      <div class="game-thumb">
+        <img src="https://upload.wikimedia.org/wikipedia/en/9/99/XDefiant_cover_art.jpg" alt="XDefiant" loading="lazy">
+        <div class="game-thumb-overlay">
+          <div class="game-thumb-text">
+            <p class="game-name">XDefiant</p>
+            <p class="game-role-text">Associate Game Director &ndash; Ubisoft &ndash; 2021&ndash;2024</p>
+            <div class="pills">
+              <span class="pill pill-blue">Live Service</span>
+              <span class="pill">F2P Shooter</span>
+              <span class="pill">15M+ Players</span>
+              <span class="pill">PC / Console</span>
+            </div>
+          </div>
+        </div>
+        <div class="hover-panel">
+          <p class="hover-panel-label">Design highlights</p>
+          <ul class="hover-stats">
+            <li><strong>3Cs</strong> Personally prototyped core FPS mechanics in Snowdrop to ~80% before engineering handoff</li>
+            <li><strong>Seasons</strong> Directed new maps, factions, weapons, abilities, and modes each seasonal cycle</li>
+            <li><strong>Process</strong> Built design review pipelines and approval cadences across 4 global studios</li>
+            <li><strong>Live ops</strong> Owned battle pass, progression tuning, and player retention systems</li>
+            <li><strong>Scale</strong> 15M+ players at launch</li>
+          </ul>
+          <span class="hover-cta">View case study &rarr;</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- South Park TFBW -->
+    <a class="game-card" href="games/south-park-tfbw.html">
+      <div class="game-thumb">
+        <img src="https://upload.wikimedia.org/wikipedia/en/2/2d/South_Park_The_Fractured_but_Whole_cover.jpg" alt="South Park: The Fractured But Whole" loading="lazy">
+        <div class="game-thumb-overlay">
+          <div class="game-thumb-text">
+            <p class="game-name">South Park: TFBW</p>
+            <p class="game-role-text">Game Design Lead &ndash; Ubisoft &ndash; 2014&ndash;2017</p>
+          </div>
+        </div>
+        <div class="hover-panel">
+          <p class="hover-panel-label">Design highlights</p>
+          <ul class="hover-stats">
+            <li><strong>Combat</strong> Designed full turn-based tactical combat system</li>
+            <li><strong>FTUE</strong> Structured onboarding without breaking comedic tone</li>
+            <li><strong>Prototype</strong> Used tabletop methods to validate combat before engine</li>
+            <li><strong>IP</strong> Direct collaboration with Matt Stone &amp; Trey Parker</li>
+          </ul>
+          <span class="hover-cta">View case study &rarr;</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- Rainbow Six Patriots -->
+    <a class="game-card" href="games/rainbow-six-patriots.html">
+      <div class="game-thumb">
+        <img src="https://images.igdb.com/igdb/image/upload/t_cover_big_2x/co1yhh.jpg" alt="Rainbow Six: Patriots" loading="lazy">
+        <div class="cancelled-badge">Cancelled</div>
+        <div class="game-thumb-overlay">
+          <div class="game-thumb-text">
+            <p class="game-name">Rainbow Six: Patriots</p>
+            <p class="game-role-text">Lead Designer &ndash; Ubisoft &ndash; 2009&ndash;2011</p>
+          </div>
+        </div>
+        <div class="hover-panel">
+          <p class="hover-panel-label">Design highlights</p>
+          <ul class="hover-stats">
+            <li><strong>3Cs</strong> Designed core character, camera, and combat systems</li>
+            <li><strong>Greenlight</strong> Led design through vertical slice to executive greenlight</li>
+            <li><strong>Teams</strong> Directed game, level, and narrative design disciplines</li>
+          </ul>
+          <span class="hover-cta">View case study &rarr;</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- Spartacus Legends -->
+    <a class="game-card" href="games/spartacus-legends.html">
+      <div class="game-thumb">
+        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/8/87/Spartacus_Legends_cover.jpg/220px-Spartacus_Legends_cover.jpg" alt="Spartacus Legends" loading="lazy">
+        <div class="game-thumb-overlay">
+          <div class="game-thumb-text">
+            <p class="game-name">Spartacus Legends</p>
+            <p class="game-role-text">Onsite Design Director / Live Designer &ndash; Ubisoft 3P</p>
+          </div>
+        </div>
+        <div class="hover-panel">
+          <p class="hover-panel-label">Design highlights</p>
+          <ul class="hover-stats">
+            <li><strong>Dev</strong> Embedded onsite design director ensuring quality bar</li>
+            <li><strong>Live</strong> Owned monthly balance patches and new weapon/armor cadence</li>
+            <li><strong>Model</strong> F2P fighting game, Starz licensed IP</li>
+          </ul>
+          <span class="hover-cta">View case study &rarr;</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- Hei$t -->
+    <a class="game-card" href="games/heist.html">
+      <div class="game-thumb" style="background:#12100a">
+        <img src="https://img.youtube.com/vi/8_9Y8PFlStk/maxresdefault.jpg" alt="Hei$t" loading="lazy"
+          onerror="this.src='https://img.youtube.com/vi/8_9Y8PFlStk/hqdefault.jpg'">
+        <div class="cancelled-badge">Cancelled</div>
+        <div class="game-thumb-overlay">
+          <div class="game-thumb-text">
+            <p class="game-name">Hei$t</p>
+            <p class="game-role-text">Lead Designer &ndash; inXile / Codemasters &ndash; 2006&ndash;2009</p>
+          </div>
+        </div>
+        <div class="hover-panel">
+          <p class="hover-panel-label">Design highlights</p>
+          <ul class="hover-stats">
+            <li><strong>3Cs</strong> Designed core character, camera, and controls</li>
+            <li><strong>Banks</strong> Conceived banks-as-bosses framework</li>
+            <li><strong>Time</strong> Designed preparation and heist time pressure mechanics</li>
+            <li><strong>Setting</strong> 1969 San Francisco open world</li>
+          </ul>
+          <span class="hover-cta">View case study &rarr;</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- Hunted -->
+    <a class="game-card" href="games/hunted.html">
+      <div class="game-thumb">
+        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/d/d0/Hunted_the_Demon%27s_Forge_cover.jpg/220px-Hunted_the_Demon%27s_Forge_cover.jpg" alt="Hunted: The Demon's Forge" loading="lazy">
+        <div class="game-thumb-overlay">
+          <div class="game-thumb-text">
+            <p class="game-name">Hunted: The Demon's Forge</p>
+            <p class="game-role-text">Lead Designer / Producer &ndash; inXile &ndash; 2006&ndash;2009</p>
+          </div>
+        </div>
+        <div class="hover-panel">
+          <p class="hover-panel-label">Design highlights</p>
+          <ul class="hover-stats">
+            <li><strong>Bible</strong> Created full design bible from scratch</li>
+            <li><strong>Prototype</strong> Built greenlight prototype that secured Bethesda deal</li>
+            <li><strong>Combat</strong> Designed co-op combat and encounter systems</li>
+          </ul>
+          <span class="hover-cta">View case study &rarr;</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- True Crime NYC -->
+    <a class="game-card" href="games/true-crime-nyc.html">
+      <div class="game-thumb">
+        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/e/e5/True_Crime_New_York_City_cover.jpg/220px-True_Crime_New_York_City_cover.jpg" alt="True Crime: New York City" loading="lazy">
+        <div class="game-thumb-overlay">
+          <div class="game-thumb-text">
+            <p class="game-name">True Crime: New York City</p>
+            <p class="game-role-text">Lead Designer &ndash; Luxoflux / Activision &ndash; 2005&ndash;2006</p>
+          </div>
+        </div>
+        <div class="hover-panel">
+          <p class="hover-panel-label">Design highlights</p>
+          <ul class="hover-stats">
+            <li><strong>Rebuild</strong> Full combat system redesign in 6 months</li>
+            <li><strong>Shooting</strong> Overhauled targeting and gun feel</li>
+            <li><strong>Melee</strong> Designed rock-paper-scissors melee system</li>
+            <li><strong>Team</strong> Led small strike team under tight deadline</li>
+          </ul>
+          <span class="hover-cta">View case study &rarr;</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- Kill Switch -->
+    <a class="game-card" href="games/kill-switch.html">
+      <div class="game-thumb">
+        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/4/4f/Kill.switch_Cover.jpg/220px-Kill.switch_Cover.jpg" alt="Kill Switch" loading="lazy" style="object-fit:contain;background:#1a0a00">
+        <div class="game-thumb-overlay">
+          <div class="game-thumb-text">
+            <p class="game-name">Kill Switch</p>
+            <p class="game-role-text">Producer / Lead Designer &ndash; Namco &ndash; 2003</p>
+          </div>
+        </div>
+        <div class="hover-panel">
+          <p class="hover-panel-label">Design highlights</p>
+          <ul class="hover-stats">
+            <li><strong>Cover</strong> Designed cover-and-blind-fire system adopted by major franchises</li>
+            <li><strong>AI</strong> Designed flanking, suppression, and squad AI</li>
+            <li><strong>Impact</strong> Genre-defining mechanics still in use today</li>
+          </ul>
+          <span class="hover-cta">View case study &rarr;</span>
+        </div>
+      </div>
+    </a>
+
+  </div>
+
+  <!-- SECONDARY CREDITS -->
+  <p class="secondary-label">Additional credits</p>
+  <div class="secondary-grid">
+    <a class="secondary-card" href="games/ms-pac-man.html">
+      <p class="game-name">Ms. Pac-Man Maze Madness</p>
+      <p class="game-role-text">Producer / Lead Designer &ndash; Namco (2000)</p>
+      <div class="pills"><span class="pill pill-blue">Level Design</span><span class="pill">PS1 / N64 / GBA</span></div>
+    </a>
+    <a class="secondary-card" href="games/pac-man-world-2.html">
+      <p class="game-name">Pac-Man World 2</p>
+      <p class="game-role-text">Producer / Lead Designer &ndash; Namco (2002)</p>
+      <div class="pills"><span class="pill pill-blue">Platformer</span><span class="pill">PS2 / GCN / Xbox</span></div>
+    </a>
+    <a class="secondary-card" href="games/mechwarrior-3.html">
+      <p class="game-name">MechWarrior 3: Pirate's Moon</p>
+      <p class="game-role-text">Designer &ndash; Zipper / MicroProse (1999)</p>
+      <div class="pills"><span class="pill pill-blue">Mission Design</span><span class="pill">PC</span></div>
+    </a>
+    <a class="secondary-card" href="games/3p-publishing.html">
+      <p class="game-name">3rd Party Publishing</p>
+      <p class="game-role-text">Embedded Onsite Design Director &ndash; Ubisoft</p>
+      <div class="pills"><span class="pill pill-blue">Ghost Recon Commander</span><span class="pill">Toy Soldiers</span><span class="pill">Expendables 2</span></div>
+    </a>
+  </div>
+</div>
+
+<hr class="divider">
+
+<div class="section-wrap" id="about">
+  <div class="section-header">
+    <p class="section-eyebrow">// about</p>
+    <h2 class="section-title">30 years of making the thing feel right</h2>
+  </div>
+  <div class="about-grid">
+    <div class="about-body">
+      <p>I started in games when you had to fight for every frame of animation and every kilobyte of memory. That constraint-first mentality never left. I prototype fast, cut ideas early, and push hard on whatever survives.</p>
+      <p>At <strong>Namco</strong>, I designed the cover-and-blind-fire system in <strong>Kill Switch</strong> &mdash; mechanics that shaped how third-person shooters felt for a generation. At <strong>Luxoflux</strong>, I led a six-person strike team that rebuilt a late-stage title's combat system in under six months.</p>
+      <p>At <strong>Ubisoft</strong>, fifteen years across licensed IP, cancelled titles, 3rd-party publishing, and finally the largest live-service launch the company had ever done. On <strong>XDefiant</strong>, I prototyped the core FPS mechanics in Snowdrop personally &mdash; around 80% complete &mdash; before handing off to engineering. I wanted to know exactly what I was asking the team to build.</p>
+      <p>The cancelled titles matter too. <strong>Rainbow Six: Patriots</strong> got a vertical slice to executive greenlight under my design lead. <strong>Hei$t</strong> &mdash; a 1969 San Francisco open-world heist game at inXile &mdash; is cult-obscure enough to be on the Lost Media Wiki. Making things that almost shipped teaches you just as much as making things that did.</p>
+    </div>
+    <div class="about-body">
+      <p>I manage and mentor designers, not just direct their output. I've built growth plans, run 1:1s, shaped hiring pipelines, and written documentation standards that teams actually used. The bar I hold for craft is the same one I hold for myself.</p>
+      <p>I've been playing <strong>D&amp;D since the early '80s</strong>, primarily as Dungeon Master across 2nd, 3rd, 3.5, and 5th edition &mdash; including five years of campaigns for the Ubisoft San Francisco studio. I used tabletop prototyping methods professionally to validate the South Park combat system before committing to production. Rule systems that feel purposeful rather than arbitrary: that's the job, whatever form it takes.</p>
+      <p>Outside the industry, I'm currently <strong>Operations Manager and acting General Manager</strong> at King's Swim Academy in San Mateo &mdash; running daily facility operations, vendor relationships, budgets, and staff development for a high-traffic aquatics facility.</p>
+      <p>Based in the <strong>San Francisco Bay Area</strong>. Open to senior design leadership, creative direction, and operations roles &mdash; remote, hybrid, or on-site.</p>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<div class="section-wrap" id="skills">
+  <div class="section-header">
+    <p class="section-eyebrow">// craft</p>
+    <h2 class="section-title">Skills and tools</h2>
+  </div>
+  <div class="skills-grid">
+    <div class="skill-group">
+      <h4>Design</h4>
+      <ul class="skill-list">
+        <li><span class="dot"></span>Core loop and systems design</li>
+        <li><span class="dot"></span>Live-service / GaaS progression</li>
+        <li><span class="dot"></span>Battle pass and reward loops</li>
+        <li><span class="dot"></span>Combat and encounter systems</li>
+        <li><span class="dot"></span>AI behavior design</li>
+        <li><span class="dot"></span>Licensed IP collaboration</li>
+        <li><span class="dot"></span>Rapid in-engine prototyping</li>
+        <li><span class="dot"></span>Telemetry and player behavior</li>
+      </ul>
+    </div>
+    <div class="skill-group">
+      <h4>Leadership</h4>
+      <ul class="skill-list">
+        <li><span class="dot"></span>Team management (40&ndash;50 devs)</li>
+        <li><span class="dot"></span>Designer mentorship and coaching</li>
+        <li><span class="dot"></span>Growth plans and performance feedback</li>
+        <li><span class="dot"></span>Hiring and interview design</li>
+        <li><span class="dot"></span>Distributed team coordination</li>
+        <li><span class="dot"></span>Stakeholder and executive communication</li>
+      </ul>
+    </div>
+    <div class="skill-group">
+      <h4>Technical</h4>
+      <ul class="skill-list">
+        <li><span class="dot"></span>Snowdrop engine (Ubisoft)</li>
+        <li><span class="dot"></span>Unreal Engine</li>
+        <li><span class="dot"></span>Unity</li>
+        <li><span class="dot"></span>MS Project</li>
+        <li><span class="dot"></span>JIRA / Confluence</li>
+        <li><span class="dot"></span>Agile / Scrum (Scrum Alliance certified)</li>
+      </ul>
+    </div>
+    <div class="skill-group">
+      <h4>Platforms shipped</h4>
+      <ul class="skill-list">
+        <li><span class="dot"></span>PlayStation 2 / 3 / 4 / 5</li>
+        <li><span class="dot"></span>Xbox / 360 / One / Series X|S</li>
+        <li><span class="dot"></span>Nintendo Switch / GameCube / N64</li>
+        <li><span class="dot"></span>PC (Windows)</li>
+        <li><span class="dot"></span>PS1 / GBA / Dreamcast (early career)</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<div class="section-wrap" id="contact">
+  <div class="section-header">
+    <p class="section-eyebrow">// contact</p>
+    <h2 class="section-title">Get in touch</h2>
+  </div>
+  <div class="contact-block">
+    <div class="contact-row">
+      <span class="contact-key">Email</span>
+      <span class="contact-val"><a href="mailto:scottcrisostomo@gmail.com">scottcrisostomo@gmail.com</a></span>
+    </div>
+    <div class="contact-row">
+      <span class="contact-key">Phone</span>
+      <span class="contact-val">(925) 389-1606</span>
+    </div>
+    <div class="contact-row">
+      <span class="contact-key">LinkedIn</span>
+      <span class="contact-val"><a href="https://www.linkedin.com/in/scott-crisostomo-3a3643/" target="_blank" rel="noopener">linkedin.com/in/scott-crisostomo-3a3643</a></span>
+    </div>
+    <div class="contact-row">
+      <span class="contact-key">Location</span>
+      <span class="contact-val">Danville, CA &mdash; open to remote and hybrid</span>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>Scott Crisostomo &mdash; designingforflow.com &mdash; 2025</p>
+</footer>
+
+</body>
+</html>
