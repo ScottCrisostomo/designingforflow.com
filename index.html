@@ -167,6 +167,7 @@ footer{border-top:1px solid var(--border);padding:2rem;text-align:center;font-si
   .nav-links{display:none}
   .about-grid{grid-template-columns:1fr}
   .hero-cta-ghost{margin-left:0;margin-top:0.75rem;display:block;width:fit-content}
+  .hero{grid-template-columns:1fr !important}
 }
 </style>
 </head>
@@ -185,7 +186,13 @@ footer{border-top:1px solid var(--border);padding:2rem;text-align:center;font-si
 
 <div class="hero">
   <p class="hero-eyebrow">// portfolio</p>
-  <h1>Scott<br><span class="accent">Crisostomo</span></h1>
+  <div style="display:flex;align-items:flex-start;gap:2rem;margin-bottom:1.5rem">
+    <h1 style="margin-bottom:0">Scott<br><span class="accent">Crisostomo</span></h1>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:0.75rem;flex-shrink:0;padding-top:0.25rem">
+      <img src="scott.jpg" alt="Scott Crisostomo" style="width:140px;height:140px;border-radius:50%;object-fit:cover;object-position:center top;border:2px solid var(--border)">
+      <a href="resume.pdf" download style="display:inline-flex;align-items:center;gap:0.4rem;border:1px solid var(--border);color:var(--muted);padding:0.5rem 1rem;border-radius:4px;font-size:12px;font-weight:500;text-decoration:none;white-space:nowrap" onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--accent)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--muted)'">Download Resume &darr;</a>
+    </div>
+  </div>
   <p class="hero-sub">Creative and game director with 30+ years leading designers, building the systems, mechanics, and moments players remember &mdash; from the cover system in Kill Switch to directing Ubisoft's largest live-service launch.</p>
   <a class="hero-cta" href="#games">See the work &rarr;</a>
   <a class="hero-cta-ghost" href="#contact">Get in touch</a>
